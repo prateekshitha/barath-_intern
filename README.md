@@ -1,2 +1,2 @@
-# barath-intern
+# bharat-intern
 APP DEVELOPMENT
