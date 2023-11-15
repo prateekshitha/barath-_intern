@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #converter {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div id="converter" class="container">
+    <h2>Temperature Converter</h2>
+
+    <div class="form-group">
+        <label for="temperature">Temperature:</label>
+        <input type="number" class="form-control" id="temperature" placeholder="Enter temperature">
+    </div>
+
+    <div class="form-group">
+        <label for="unit">Unit:</label>
+        <select class="form-control" id="unit" onchange="convertTemperature()">
+            <option value="celsius">Celsius</option>
+            <option value="fahrenheit">Fahrenheit</option>
+        </select>
+    </div>
+
+    <p id="result"></p>
+</div>
+
+<script>
+    function convertTemperature() {
+        var temperatureInput = document.getElementById("temperature");
+        var unitSelect = document.getElementById("unit");
+        var resultOutput = document.getElementById("result");
+
+        var temperatureValue = parseFloat(temperatureInput.value);
+        var selectedUnit = unitSelect.value;
+
+        if (!isNaN(temperatureValue)) {
+            if (selectedUnit === "celsius") {
+                var fahrenheitResult = (temperatureValue * 9/5) + 32;
+                resultOutput.innerHTML = temperatureValue + " Celsius is equal to " + fahrenheitResult.toFixed(2) + " Fahrenheit.";
+            } else {
+                var celsiusResult = (temperatureValue - 32) * 5/9;
+                resultOutput.innerHTML = temperatureValue + " Fahrenheit is equal to " + celsiusResult.toFixed(2) + " Celsius.";
+            }
+        } else {
+            resultOutput.innerHTML = "Enter a valid temperature.";
+        }
+    }
+</script>
+
+</body>
+</html>
