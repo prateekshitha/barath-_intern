@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List App</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        #taskInput, #addTaskBtn {
+            margin-bottom: 10px;
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        #taskList {
+            list-style-type: none;
+            padding: 0;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .taskItem {
+            background-color: #fff;
+            padding: 12px;
+            margin-bottom: 8px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .deleteButton {
+            background-color: #ff6666;
+            color: #fff;
+            border: none;
+            padding: 6px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>To-Do List App</h1>
+
+    <input type="text" id="taskInput" placeholder="Enter task">
+    <button onclick="addTask()" id="addTaskBtn">Add Task</button>
+
+    <ul id="taskList"></ul>
+
+    <script>
+        function addTask() {
+            var taskInput = document.getElementById("taskInput");
+            var taskList = document.getElementById("taskList");
+
+            if (taskInput.value.trim() !== "") {
+                var taskItem = document.createElement("li");
+                taskItem.className = "taskItem";
+
+                var taskText = document.createTextNode(taskInput.value);
+                taskItem.appendChild(taskText);
+
+                var deleteButton = document.createElement("button");
+                deleteButton.className = "deleteButton";
+                deleteButton.innerHTML = "Delete";
+                deleteButton.onclick = function() {
+                    taskList.removeChild(taskItem);
+                };
+
+                taskItem.appendChild(deleteButton);
+
+                taskList.appendChild(taskItem);
+
+                taskInput.value = "";
+            }
+        }
+    </script>
+
+</body>
+</html>
